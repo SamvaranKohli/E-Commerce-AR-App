@@ -11,14 +11,12 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.att23.CartFiles.Adapter_cart;
 import com.example.att23.CartFiles.model_cart;
-import com.example.att23.Similar.Model;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

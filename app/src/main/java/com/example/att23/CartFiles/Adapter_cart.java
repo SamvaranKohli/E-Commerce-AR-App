@@ -21,11 +21,8 @@ import com.example.att23.MainActivity;
 import com.example.att23.R;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.Statement;
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class Adapter_cart extends RecyclerView.Adapter<holder_cart> {
 
