@@ -3,6 +3,7 @@ package com.example.att23;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +14,11 @@ import com.google.ar.sceneform.Camera;
 import com.google.ar.sceneform.Node;
 import com.google.ar.sceneform.Sun;
 import com.google.ar.sceneform.assets.RenderableSource;
+import com.google.ar.sceneform.math.Quaternion;
+import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
+import com.google.ar.sceneform.ux.TransformableNode;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
@@ -67,6 +71,8 @@ public class AR extends AppCompatActivity {
 
             List<Node> children = new ArrayList<>(arFragment.getArSceneView().getScene().getChildren());
 
+            AnchorNode anchorNode = new AnchorNode(hitResult.createAnchor());
+
             if(children.size() >= 1)
             {
                 for (Node node : children) {
@@ -81,9 +87,32 @@ public class AR extends AppCompatActivity {
                 }
             }
 
-            AnchorNode anchorNode = new AnchorNode(hitResult.createAnchor());
-            anchorNode.setRenderable(renderable);
+            //anchorNode.setRenderable(renderable);
             arFragment.getArSceneView().getScene().addChild(anchorNode);
+
+            anchorNode.setParent(arFragment.getArSceneView().getScene());
+
+            TransformableNode transformableNode = new TransformableNode(arFragment.getTransformationSystem());
+            transformableNode.setParent(anchorNode);
+
+            transformableNode.setRenderable(renderable);
+
+            //transformableNode.getScaleController().setMinScale(0.2f);
+            transformableNode.setLocalRotation(Quaternion.axisAngle(new Vector3(0, 0, 1f), 0));
+            transformableNode.getScaleController().setEnabled(false);
+            transformableNode.setOnTouchListener((hitTestResult, motionEvent1) -> {
+                if (motionEvent1.getAction() == MotionEvent.ACTION_UP) {
+                    String nodeName = "Nothing";
+                    if (hitTestResult.getNode() != null) {
+                        return true;
+                    }
+                    Toast.makeText(AR.this, nodeName + " was touched", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                return false;
+            });
+            //transformableNode.getTranslationController().setEnabled(false);
+            transformableNode.select();
 
         });
     }
