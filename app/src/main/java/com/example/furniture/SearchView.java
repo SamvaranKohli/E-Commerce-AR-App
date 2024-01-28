@@ -1,4 +1,4 @@
-package com.example.att23;
+package com.example.furniture;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -50,7 +50,7 @@ public class SearchView extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Toast.makeText(SearchView.this, editText.getText(), Toast.LENGTH_SHORT).show();
-                Intent myIntent = new Intent(SearchView.this, Main2Activity.class);
+                Intent myIntent = new Intent(SearchView.this, productListing.class);
                 myIntent.putExtra("key", editText.getText().toString());
                 SearchView.this.startActivity(myIntent);
 
@@ -138,8 +138,8 @@ public class SearchView extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Toast.makeText(SearchView.this, list.get(position), Toast.LENGTH_SHORT).show();
-                Intent myIntent = new Intent(SearchView.this, Main2Activity.class);
+                //Toast.makeText(SearchView.this, list.get(position), Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(SearchView.this, productListing.class);
                 myIntent.putExtra("key", list.get(position));
                 SearchView.this.startActivity(myIntent);
 

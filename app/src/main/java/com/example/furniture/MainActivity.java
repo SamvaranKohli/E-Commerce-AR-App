@@ -1,4 +1,4 @@
-package com.example.att23;
+package com.example.furniture;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -25,8 +25,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.att23.Similar.Adapter;
-import com.example.att23.Similar.Model;
+import com.example.furniture.Similar.Adapter;
+import com.example.furniture.Similar.Model;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

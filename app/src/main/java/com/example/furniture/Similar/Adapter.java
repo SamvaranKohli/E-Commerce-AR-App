@@ -1,4 +1,4 @@
-package com.example.att23.Similar;
+package com.example.furniture.Similar;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.att23.ItemClickListenser;
-import com.example.att23.MainActivity;
-import com.example.att23.R;
+import com.example.furniture.ItemClickListenser;
+import com.example.furniture.MainActivity;
+import com.example.furniture.R;
 
 import java.util.ArrayList;
 

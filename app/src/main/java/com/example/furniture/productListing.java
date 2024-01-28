@@ -1,4 +1,4 @@
-package com.example.att23;
+package com.example.furniture;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,8 +14,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.att23.List.Adapter_search;
-import com.example.att23.List.Model_search;
+import com.example.furniture.List.Adapter_search;
+import com.example.furniture.List.Model_search;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -24,49 +24,50 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class Main2Activity extends AppCompatActivity {
+public class productListing extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    Adapter_search adapter;
+    RecyclerView productListingRecyclerView;
+    Adapter_search productListingAdapter;
 
     Connection connect;
-
-    ImageButton searchbutton;
-
-    String value;
-    String cat_id;
+    ImageButton searchButton;
+    String searchString;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_product_listing);
 
+        // get the search value if, listing page is opened after searching
         Intent intent = getIntent();
-        value = intent.getStringExtra("key");
+        searchString = intent.getStringExtra("key");
 
-        cat_id = intent.getStringExtra("cat_id");
+        // set xml id
+        searchButton = findViewById(R.id.search);
 
-        searchbutton = findViewById(R.id.search);
+        productListingRecyclerView = findViewById(R.id.rv);
+        productListingRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
-        recyclerView = findViewById(R.id.rv);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        productListingAdapter = new Adapter_search(this, getProductList());
+        productListingRecyclerView.setAdapter(productListingAdapter);
 
-        adapter = new Adapter_search(this, getMyList());
-        recyclerView.setAdapter(adapter);
-
-        searchbutton.setOnClickListener(new View.OnClickListener() {
+        // set search button functionality
+        searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent myIntent = new Intent(Main2Activity.this, SearchView.class);
-                Main2Activity.this.startActivity(myIntent);
+                // open search page
+                Intent myIntent = new Intent(productListing.this, SearchView.class);
+                productListing.this.startActivity(myIntent);
 
             }
         });
 
     }
 
-    private ArrayList<Model_search> getMyList()
+    // set product list for recycler view
+    private ArrayList<Model_search> getProductList()
     {
         ArrayList<Model_search> models = new ArrayList<>();
 
@@ -80,20 +81,19 @@ public class Main2Activity extends AppCompatActivity {
 
             if(connect != null)
             {
-                String query = "null";
+                String query;
 
-                if(value != null)
+                if(searchString != null)
                 {
-                    query = "select i.id, i.img1, p_name, company, discount_price, orignal_price, company from images i , products p1 where i.id=p1.id and (p_name LIKE '%" + value + "%' or company LIKE '%" + value + "%')";
+                    query = "select i.id, i.img1, p_name, company, discount_price, orignal_price, company from images i , products p1 where i.id=p1.id and (p_name LIKE '%" + searchString + "%' or company LIKE '%" + searchString + "%')";
                 }
-                else if(cat_id != null)
+                else
                 {
-                    query = "select i.id, i.img1, p_name, company, discount_price, orignal_price, category_id, company from images i , products p1 where i.id=p1.id and category_id = " + cat_id;
+                    query = "select i.id, i.img1, p_name, company, discount_price, orignal_price, company from images i , products p1 where i.id=p1.id";
                 }
 
                 Statement st = connect.createStatement();
                 ResultSet rs = st.executeQuery(query);
-
 
                 while(rs.next())
                 {
@@ -119,7 +119,7 @@ public class Main2Activity extends AppCompatActivity {
             }
             else
             {
-                Toast.makeText(Main2Activity.this, "Hello", Toast.LENGTH_SHORT).show();
+                Toast.makeText(productListing.this, "No connection", Toast.LENGTH_SHORT).show();
             }
 
         } catch (Exception ex) {

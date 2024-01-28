@@ -1,4 +1,4 @@
-package com.example.att23.Similar;
+package com.example.furniture.Similar;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -7,8 +7,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.att23.ItemClickListenser;
-import com.example.att23.R;
+import com.example.furniture.ItemClickListenser;
+import com.example.furniture.R;
 
 public class Holder extends RecyclerView.ViewHolder implements View.OnClickListener{
 

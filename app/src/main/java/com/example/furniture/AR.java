@@ -1,4 +1,4 @@
-package com.example.att23;
+package com.example.furniture;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -42,6 +42,7 @@ public class AR extends AppCompatActivity {
         id = intent.getStringExtra("key");
 
         String name = "out" + id + ".glb";
+        //String name = "tile.glb";
 
         FirebaseApp.initializeApp(this);
 

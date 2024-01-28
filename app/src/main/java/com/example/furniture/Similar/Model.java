@@ -1,4 +1,4 @@
-package com.example.att23.Similar;
+package com.example.furniture.Similar;
 
 
 import android.graphics.Bitmap;

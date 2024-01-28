@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.att23">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.furniture">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA"
+        tools:ignore="PermissionImpliesUnsupportedChromeOsHardware" />
 
     <uses-feature
         android:name="android.hardware.camera.ar"
@@ -18,22 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Address_Add"
+            android:name="com.example.furniture.SignIn"
             android:exported="false" />
         <activity
-            android:name=".Account_Info"
+            android:name="com.example.furniture.SignUp"
             android:exported="false" />
         <activity
-            android:name=".Cart"
-            android:exported="false" />
-        <activity
-            android:name=".SignIn"
-            android:exported="false" />
-        <activity
-            android:name=".SignUp"
-            android:exported="false" />
-        <activity
-            android:name=".SplashScreen"
+            android:name="com.example.furniture.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,9 +34,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AR" />
-        <activity android:name=".SearchView" />
-        <activity android:name=".Main2Activity">
+        <activity android:name="com.example.furniture.AR" />
+        <activity android:name="com.example.furniture.SearchView" />
+        <activity android:name="com.example.furniture.productListing">
 
             <!--
             <intent-filter>
@@ -55,9 +48,9 @@
 
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:parentActivityName=".Main2Activity" />
-        <activity android:name=".LandingPage" />
+            android:name="com.example.furniture.MainActivity"
+            android:parentActivityName="com.example.furniture.productListing" />
+        <activity android:name="com.example.furniture.LandingPage" />
 
         <meta-data
             android:name="com.google.ar.core"

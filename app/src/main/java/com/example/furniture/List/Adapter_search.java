@@ -1,4 +1,4 @@
-package com.example.att23.List;
+package com.example.furniture.List;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.att23.ItemClickListenser;
-import com.example.att23.MainActivity;
-import com.example.att23.R;
+import com.example.furniture.ItemClickListenser;
+import com.example.furniture.MainActivity;
+import com.example.furniture.R;
 
 import java.util.ArrayList;
 
@@ -39,7 +39,6 @@ public class Adapter_search extends RecyclerView.Adapter<Holder_search> {
     public void onBindViewHolder(@NonNull Holder_search holder, int position) {
 
         //holder.mImageView.setImageResource(models.get(position).getImg());
-
 
         //holder.row2_iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
         holder.row2_iv.setImageBitmap(models.get(position).getBitmap());

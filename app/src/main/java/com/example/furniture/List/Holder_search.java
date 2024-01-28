@@ -1,4 +1,4 @@
-package com.example.att23.List;
+package com.example.furniture.List;
 
 import android.graphics.Paint;
 import android.view.View;
@@ -8,10 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.att23.ItemClickListenser;
-import com.example.att23.R;
-
-import org.w3c.dom.Text;
+import com.example.furniture.ItemClickListenser;
+import com.example.furniture.R;
 
 public class Holder_search extends RecyclerView.ViewHolder implements View.OnClickListener{
 

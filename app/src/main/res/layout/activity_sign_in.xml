@@ -139,7 +139,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             android:id="@+id/login_text"
-            android:onClick="goto_signup">
+            android:onClick="MoveToSignUp">
 
         </TextView>
 

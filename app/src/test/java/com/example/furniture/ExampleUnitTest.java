@@ -1,4 +1,4 @@
-package com.example.att23;
+package com.example.furniture;
 
 import org.junit.Test;
 

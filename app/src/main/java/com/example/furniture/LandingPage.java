@@ -1,4 +1,4 @@
-package com.example.att23;
+package com.example.furniture;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -11,10 +11,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.att23.Category.Adapter_Category;
-import com.example.att23.Category.Model_category;
-import com.example.att23.List.Adapter_search;
-import com.example.att23.List.Model_search;
+import com.example.furniture.List.Adapter_search;
+import com.example.furniture.List.Model_search;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -26,7 +24,6 @@ import java.util.Locale;
 public class LandingPage extends AppCompatActivity {
 
     RecyclerView recyclerView_cat;
-    Adapter_Category adapter;
 
     RecyclerView recyclerView_feat;
     Adapter_search adapter_search;
@@ -37,14 +34,6 @@ public class LandingPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
-
-        recyclerView_cat = findViewById(R.id.rv_cat);
-        recyclerView_cat.setLayoutManager(new GridLayoutManager(this, 3));
-        recyclerView_cat.setNestedScrollingEnabled(false);
-
-        adapter = new Adapter_Category(this, getMyList_cat());
-        recyclerView_cat.setAdapter(adapter);
-
 
         recyclerView_feat = findViewById(R.id.feat);
         recyclerView_feat.setLayoutManager(new GridLayoutManager(this, 2));
@@ -109,59 +98,5 @@ public class LandingPage extends AppCompatActivity {
         }
 
         return  models;
-    }
-
-    private ArrayList<Model_category> getMyList_cat()
-    {
-        ArrayList<Model_category> models = new ArrayList<>();
-
-        Model_category m;
-
-        try {
-
-            ConnectionHelper connectionHelper = new ConnectionHelper();
-
-            connect = connectionHelper.connectionclass();
-
-            if(connect != null)
-            {
-                String query = "select * from category";
-                Statement st = connect.createStatement();
-                ResultSet rs = st.executeQuery(query);
-
-
-                while(rs.next())
-                {
-                    m = new Model_category();
-                    byte[] bytesImageDB = rs.getBytes("img");
-                    Bitmap bitmapImageDB = BitmapFactory.decodeByteArray(bytesImageDB, 0, bytesImageDB.length);
-                    m.setBitmap(bitmapImageDB);
-                    m.setTitle(rs.getString("cat_name"));
-                    m.setId(rs.getString("id"));
-                    models.add(m);
-                }
-            }
-            else
-            {
-                Toast.makeText(LandingPage.this, "Hello", Toast.LENGTH_SHORT).show();
-            }
-
-        } catch (Exception ex) {
-
-        }
-
-        return  models;
-    }
-
-    public void goToCart(View v)
-    {
-        Intent myIntent = new Intent(LandingPage.this, Cart.class);
-        LandingPage.this.startActivity(myIntent);
-    }
-
-    public void geToAccount(View V)
-    {
-        Intent myIntent = new Intent(LandingPage.this, Account_Info.class);
-        LandingPage.this.startActivity(myIntent);
     }
 }

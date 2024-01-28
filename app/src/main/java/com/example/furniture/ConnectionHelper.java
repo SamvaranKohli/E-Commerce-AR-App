@@ -1,35 +1,18 @@
-package com.example.att23;
+package com.example.furniture;
 
 import android.annotation.SuppressLint;
 import android.os.StrictMode;
 import android.util.Log;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.Objects;
 
 public class ConnectionHelper {
 
-    Connection con;
-
     String uname, pass, ip, port, database;
-
-    FirebaseDatabase data;
-
-    TextView txt;
 
     @SuppressLint("NewApi")
     public Connection connectionclass(){
@@ -58,9 +41,4 @@ public class ConnectionHelper {
         return connection;
     }
 
-    void setValues(String hello)
-    {
-        //Log.d("firebase", hello);
-        ip = hello;
-    }
 }
